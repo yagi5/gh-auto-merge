@@ -67,13 +67,13 @@ func (pr *pullRequest) merged() bool {
 }
 
 func (pr *pullRequest) closed() bool {
-	return pr.pr.GetClosedAt().IsZero()
+	return !pr.pr.GetClosedAt().IsZero()
 }
 
 func (pr *pullRequest) title() string {
 	return pr.pr.GetTitle()
 }
 
-func (pr *pullRequest) headBranch() *github.PullRequestBranch {
-	return pr.pr.GetBase()
+func (pr *pullRequest) headBranch() string {
+	return pr.pr.GetBase().GetLabel()
 }
